@@ -1,6 +1,5 @@
+import PropTypes  from 'prop-types';
 import './Message.styles.css';
-
-import { render } from '@testing-library/react';
 
 export const Message = ({ author, text }) => {
 
@@ -11,3 +10,8 @@ export const Message = ({ author, text }) => {
     </div>    
   );
 };
+
+Message.propTypes = {
+  author: PropTypes.string.isRequired,
+  text: PropTypes.string,
+}

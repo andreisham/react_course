@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { Button, TextField } from "@mui/material";
+import { useEffect, useState, useRef } from "react";
 import './Form.styles.css';
 
 export const Form = ({onSubmit}) => {
@@ -9,14 +10,20 @@ export const Form = ({onSubmit}) => {
         onSubmit(value)
         setValue('')
     }
+    // автофокус на инпут через рефы
+    const inputRef = useRef(null);
 
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, []);
+    
     const handleChange = (event) => {
         setValue(event.target.value)
     }
     return(
         <form onSubmit={handleSubmit}>
-            <input value={value} onChange={handleChange} type="text" />
-            <input type="submit" />
+            <TextField value={value} onChange={handleChange} inputRef={inputRef}></TextField>
+            <Button type="submit">Submit</Button>
         </form>
     )
 }
