@@ -1,19 +1,40 @@
 import './App.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Message } from "./components/Message/Message";
+import { Form } from "./components/Form/Form";
 
-const text = "some text";
-const name = "some name";
 
+const msgs = [];
+const myName = 'mr smith';
 
 function App() {
-  const foo = () => {
-    alert('hello');
-  };
+  const [messages, setMessages] = useState(msgs);
+
+  const addMessage = (newText) => {
+    setMessages([...messages, {text: newText, author: myName}]);
+  }
+
+  // ответ от робота на сообщения мр. Смита, робот отвечает с задержкой в 1.5 секунды
+  useEffect(() => { 
+    const timer = setTimeout(() => {
+      if (messages.length > 0 && messages[messages.length - 1].author == myName) {
+        setMessages([...messages, {text: 'hi from robot', author: "robot"}]);
+      }
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [messages])
+
   return (
     <div className="App"> 
-      <Message text={text} name={name} number={123} doSmth={foo} bold={true} />
-      <Message text="new text" name={name} number={123} doSmth={foo} />
+      <h1 className='dumb'>Extremely dumb chat!</h1>
+      <div className='messages_block'>
+        {messages.map((msg) => (
+          <Message author={msg.author} text={msg.text} />
+        ))}
+      </div>
+      <div className='form_block'>
+        <Form onSubmit={addMessage}/>
+      </div>
     </div>
   );
 }
