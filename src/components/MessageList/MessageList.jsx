@@ -1,4 +1,4 @@
-import { Message } from "../Message/Message"
+import { MessageWithThemeColor } from "../Message/Message"
 
 export const MessageList = ({ messages }) => {
-   return( messages.map((msg) => <Message key={msg.id} author={msg.author} text={msg.text} /> )) }
+   return( messages.map((msg) => <MessageWithThemeColor key={msg.id} author={msg.author} text={msg.text} /> )) }

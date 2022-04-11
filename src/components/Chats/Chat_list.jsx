@@ -1,11 +1,13 @@
-import { ListItem, Divider,ListItemText } from "@mui/material";
+import { ListItem, Divider,ListItemText, Button } from "@mui/material";
 import './Chats.styles.css';
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { ThemeContext } from "../../utils/ThemeContext";
+
 
 export const Chat_list = () => {
 
-    const chat_list = [
+    const chats = [
         {
           id: 'chat1',
           name: 'Inbox',
@@ -23,11 +25,16 @@ export const Chat_list = () => {
           name: 'Spam',
         },
     ]
-
-    const [chats, setChats] = useState(chat_list);
+    const { changeTheme } = useContext(ThemeContext);
 
     return(
         <div className='chat_list'>
+          <Button
+          onClick={
+            changeTheme
+          }>
+            Click
+          </Button>
             {chats.map((chat) => 
                 <React.Fragment key={chat.id}>           
                     <ListItem button>
