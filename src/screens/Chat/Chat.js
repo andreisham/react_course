@@ -4,32 +4,24 @@ import { Form } from "../../components/Form/Form";
 import { MessageList } from "../../components/MessageList/MessageList";
 import { AUTHORS } from "../../utils/constants";
 
-const initMessages = {
-    chat1: [],
-    chat2: [],
-    chat3: [],
-    chat4: [],
-}
-
-export function Chat() {
+export function Chat({messages, addMessage}) {
     const { id } = useParams();
-    const [messages, setMessages] = useState(initMessages);
+    //const [messages, setMessages] = useState(initMessages);
   
-    const addMessage = (newMsg) => {
-      setMessages({...messages, [id]: [...messages[id], newMsg] });
-    }
+    
   
     const sendMessage = (newText) => {
       addMessage({
         author: AUTHORS.myName,
         text: newText,
         id: `msg-${Date.now()}`
-      })
+      },
+      id
+      )
     }
   
     const timer = useRef();
-  
-    // ответ от робота на сообщения мр. Смита, робот отвечает с задержкой в 1.5 секунды
+
     useEffect(() => { 
       timer.current = setTimeout(() => {
         const lastMessage = messages[id]?.[messages[id]?.length - 1];
@@ -38,7 +30,9 @@ export function Chat() {
             author: AUTHORS.robot,
             text: 'hi from robot',
             id: `msg-${Date.now()}`
-          })
+          },
+          id
+          )
         }
       }, 1500);
       return () => clearTimeout(timer.current);
@@ -47,6 +41,7 @@ export function Chat() {
     if(!messages[id]) {
         return <Navigate to='/chat' replace />
     }
+    
     return (
       <div className="App"> 
         <h1 className='dumb'>Extremely dumb chat!</h1>

@@ -5,7 +5,7 @@ import { ThemeContext } from '../../utils/ThemeContext';
 import './Message.styles.css';
 
 export const Message = ({ author, text, theme }) => {
-  //const { theme } = useContext(ThemeContext);
+
   return (
     <div>
       <span style={{color: theme === 'dark' ? 'red' : 'blue'}}>{author}: </span>
