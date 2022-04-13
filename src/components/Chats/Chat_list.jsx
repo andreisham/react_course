@@ -1,35 +1,13 @@
 import { ListItem, Divider, Button } from "@mui/material";
 import './Chats.styles.css';
-import React, { useContext, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { ThemeContext } from "../../utils/ThemeContext";
-import { Form } from "../Form/Form";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useDispatch, useSelector } from "react-redux";
-import { selectChats } from "../../store/chats/selectors";
-import { addChat, deleteChat } from "../../store/chats/actions";
 
 
-export const Chat_list = () => {
-    const chats = useSelector(selectChats);
-    const dispatch = useDispatch();
-    const handleSubmit = (newChatName) => {
-      const newChat = {
-        name: newChatName,
-        id: `chat-${Date.now()}`
-      };
-      dispatch(addChat(newChat));
-
-    }
-
-    const handleDeleteChat = (id) => {
-      dispatch(deleteChat(id))
-    } 
-
-    const { changeTheme } = useContext(ThemeContext);
-
-    return(
-        <div className='chat_list'>
+export const Chat_list = ( {chats, handleDeleteChat, changeTheme} ) => {
+    return (
+        <>
           <Button
           onClick={
             changeTheme
@@ -45,11 +23,6 @@ export const Chat_list = () => {
                     <Divider />  
                 </React.Fragment>)
             }
-            <div className='profile_form'>
-              <p>Создать новый чат</p> 
-              <Form onSubmit={handleSubmit} />
-            </div>
-            <Outlet />
-        </div>
+        </>
     )
 }

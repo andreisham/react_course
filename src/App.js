@@ -1,11 +1,11 @@
 import './App.css';
 import React, { useState } from 'react';
-import { Chat_list } from './components/Chats/Chat_list';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Chat } from './screens/Chat/Chat';
 import { Home } from  './screens/Home/Home';
 import { Profile } from  './screens/Profile/Profile';
 import { ThemeContext } from './utils/ThemeContext';
+import { Chat_list_container } from './components/Chats/Chat_list_container';
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/chat' element={<Chat_list />} >
+          <Route path='/chat' element={<Chat_list_container />} >
             <Route path=':id' element={<Chat />}/>
           </Route>
         </Routes>
