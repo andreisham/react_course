@@ -1,13 +1,12 @@
 import './App.css';
 import React, { useState } from 'react';
-import { Provider } from 'react-redux';
 import { Chat_list } from './components/Chats/Chat_list';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Chat } from './screens/Chat/Chat';
 import { Home } from  './screens/Home/Home';
 import { Profile } from  './screens/Profile/Profile';
 import { ThemeContext } from './utils/ThemeContext';
-import { store } from './store';
+
 
 function App() {
   const [theme, setTheme] = useState('dark');
@@ -15,8 +14,9 @@ function App() {
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   };
+
   return(
-    <Provider store = {store}>
+    
     <ThemeContext.Provider value={{theme: theme, changeTheme: toggleTheme}}>
       <BrowserRouter>
       <ul>
@@ -39,7 +39,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ThemeContext.Provider>
-    </Provider>
+
   )
 }
 

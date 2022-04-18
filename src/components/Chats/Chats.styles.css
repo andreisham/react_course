@@ -2,3 +2,11 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+
+.delete_chat {
+    margin-left: 10px;
+}
+
+.chat_list {
+    margin-left: 25px;
+}

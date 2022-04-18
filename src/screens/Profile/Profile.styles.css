@@ -1,0 +1,9 @@
+.profile_form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile {
+    margin-left: 25px;
+}

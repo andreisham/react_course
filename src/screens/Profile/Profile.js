@@ -1,16 +1,26 @@
-import { FormControl, FormControlLabel, FormLabel, InputLabel, Radio, RadioGroup } from "@mui/material";
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCheckbox } from "../../store/profile/actions";
+import { Form } from "../../components/Form/Form";
+import { setName, toggleCheckbox } from "../../store/profile/actions";
+import { selectName, selectShowName } from "../../store/profile/selectors";
+import './Profile.styles.css'
 
 export const Profile = () => {
     const dispatch = useDispatch();
-    const state = useSelector(state => state);
-    console.log(state)
+    const name = useSelector(selectName);
+    const showName = useSelector(selectShowName);
+    const state = useSelector((state) => state.profile);
+    
     const handleClick = () => {
         dispatch(toggleCheckbox)
     }
+
+    const handleSubmit = (text) => {
+        dispatch(setName(text))
+    }
+
     return (
-    <>
+    <div className="profile">
         <h1>Тут могла быть ваша реклама, но пока тут только сраница профиля</h1>
         <FormControl>
             <FormLabel id="demo-radio-buttons-group-label">show name?</FormLabel>
@@ -25,5 +35,9 @@ export const Profile = () => {
             </RadioGroup>
         </FormControl>
         {state.showName && <h2>{state.name}</h2>}
-    </>) 
+        <div className='profile_form'>
+            <p>Сменить имя пользователя</p> 
+            <Form onSubmit={handleSubmit} />
+        </div>
+    </div>) 
 };
