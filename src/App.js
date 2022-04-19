@@ -6,6 +6,7 @@ import { Home } from  './screens/Home/Home';
 import { Profile } from  './screens/Profile/Profile';
 import { ThemeContext } from './utils/ThemeContext';
 import { Chat_list_container } from './components/Chats/Chat_list_container';
+import { Articles } from './screens/Articles/Articles';
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
         <li>
           <NavLink to='/profile' style={({ isActive }) => ({ color: isActive ? "green" : "blue"})}>Profile</NavLink>
         </li>
+        <li>
+          <NavLink to='/articles' style={({ isActive }) => ({ color: isActive ? "green" : "blue"})}>Articles</NavLink>
+        </li>
       </ul>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -36,6 +40,7 @@ function App() {
           <Route path='/chat' element={<Chat_list_container />} >
             <Route path=':id' element={<Chat />}/>
           </Route>
+          <Route path='/articles' element={<Articles />} />
         </Routes>
       </BrowserRouter>
     </ThemeContext.Provider>

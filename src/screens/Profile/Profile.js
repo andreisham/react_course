@@ -3,17 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form } from "../../components/Form/Form";
 import { setName, toggleCheckbox } from "../../store/profile/actions";
 import { selectName, selectShowName } from "../../store/profile/selectors";
+import { usePrev } from "../../utils/usePrev";
+
 import './Profile.styles.css'
 
 export const Profile = () => {
     const dispatch = useDispatch();
+   
+    
+
     const name = useSelector(selectName);
-    const showName = useSelector(selectShowName);
+
     const state = useSelector((state) => state.profile);
     
     const handleClick = () => {
         dispatch(toggleCheckbox)
     }
+
+    // предыдущее значение имени
+    const prevName = usePrev(name);
+    console.log(prevName);
 
     const handleSubmit = (text) => {
         dispatch(setName(text))
