@@ -21,7 +21,7 @@ export const Form = ({onSubmit}) => {
         setValue(event.target.value)
     }
     return(
-        <form onSubmit={handleSubmit}>
+        <form className="chatForm" onSubmit={handleSubmit}>
             <TextField value={value} onChange={handleChange} inputRef={inputRef}></TextField>
             <Button type="submit">Submit</Button>
         </form>

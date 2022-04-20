@@ -1,3 +1,5 @@
+import { push } from "firebase/database";
+import { auth, getMsgsListRefById } from "../../services/firebase";
 import { AUTHORS } from "../../utils/constants";
 
 export const ADD_MESSAGE = 'MESSAGES::ADD_MESSAGE';
@@ -15,14 +17,19 @@ export const addMessageWithReply = (newMessage, chatId) => (dispatch) => {
     dispatch(addMessage(newMessage, chatId))
     clearTimeout(timeout)
     timeout = setTimeout(() => {
-        if (newMessage?.author === AUTHORS.myName) {
-          dispatch(addMessage({
+        if (newMessage?.author === auth.currentUser.email) {
+          push(getMsgsListRefById(chatId), {
             author: AUTHORS.robot,
             text: 'hi from robot',
             id: `msg-${Date.now()}`
-          },
-          chatId
-          ))
+          })
+          // dispatch(addMessage({
+          //   author: AUTHORS.robot,
+          //   text: 'hi from robot',
+          //   id: `msg-${Date.now()}`
+          // },
+          // chatId
+          // ))
         }
     }, 1500);
 }
