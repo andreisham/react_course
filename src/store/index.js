@@ -5,7 +5,7 @@ import { messagesReducer } from "./messages/reducer";
 import thunk from "redux-thunk";
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from "redux-persist";
-import { articlesReducer } from "./Articles/chats/reducer";
+import { articlesReducer } from "./Articles/reducer";
 
 const persistConfig = {
     key: 'messenger',
