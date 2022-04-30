@@ -17,7 +17,8 @@ export const Chat_list = ( {chats, handleDeleteChat, changeTheme} ) => {
             {chats.map((chat) => 
                 <React.Fragment key={chat.id}>           
                     <ListItem button>
-                        <NavLink to={`/chat/${chat.id}`} key={chat.id} style={({ isActive }) => ({ color: isActive ? "green" : "blue"})}>{chat.name}</NavLink>
+                        {/* <NavLink to={`/chat/${chat.id}`} key={chat.id} style={({ isActive }) => ({ color: isActive ? "green" : "blue"})}>{chat.name}</NavLink> */}
+                        <p  key={chat.id} >{chat.name}</p>
                         <DeleteForeverIcon className="delete_chat" onClick={() => handleDeleteChat(chat.id)}>Delete</DeleteForeverIcon>
                     </ListItem>
                     <Divider />  

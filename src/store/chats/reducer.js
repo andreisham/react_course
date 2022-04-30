@@ -5,7 +5,7 @@ const initialState = [];
 export const chatsReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case ADD_CHAT: {
-            return [...state, payload];
+            return [...state, payload]; 
         }
         case DELETE_CHAT: {
             return state.filter(({ id }) => id !== payload)
